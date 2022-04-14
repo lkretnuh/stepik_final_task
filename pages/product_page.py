@@ -36,4 +36,10 @@ class ProductPage(BasePage):
         books_name2 = self.browser.find_element(*ProductPageLocators.BOOKS_NAME2).text
         assert books_name1 == books_name2, "Book's names don't coincide"
     
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+        "Success message is presented, but should not be"
+    
+    def element_disappeared(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), "Element was disappear"
     

@@ -14,3 +14,4 @@ class ProductPageLocators():
     BASKET_PRICE = (By.CSS_SELECTOR, ".alertinner>p>strong")
     BOOKS_NAME1 = (By.CSS_SELECTOR, ".col-sm-6>h1")
     BOOKS_NAME2 = (By.CSS_SELECTOR, ".alertinner>strong")
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, ".alert-success")

@@ -1,11 +1,12 @@
-#import pytest
+import pytest
 from .pages.product_page import ProductPage
-'''
+from .pages.basket_page import BasketPage
+
 @pytest.mark.parametrize('link', [0, 1, 2, 3, 4, 5, 6,
                                   pytest.param(7, marks=pytest.mark.xfail),
-                                  8, 9])'''
+                                  8, 9])
 
-'''def test_guest_can_add_product_to_basket(browser, link):
+def test_guest_can_add_product_to_basket(browser, link):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
     page = ProductPage(browser,link)
     page.open()
@@ -19,6 +20,7 @@ from .pages.product_page import ProductPage
     concurrence.concurrence_books_name()
     basket_price = ProductPage(browser, browser.current_url)
     basket_price.basket_price()
+    
 @pytest.mark.xfail
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
@@ -39,7 +41,7 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     page = ProductPage(browser,link)
     page.open()
     page.click_add_to_basket()
-    page.element_disappeared()'''
+    page.element_disappeared()
 
 def test_guest_should_see_login_link_on_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
@@ -52,3 +54,13 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     page = ProductPage(browser, link)
     page.open()
     page.go_to_login_page()
+    
+@pytest.mark.new
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
+    page = ProductPage(browser, link)
+    page.open()
+    page.go_to_basket_page()
+    basket_page = BasketPage(browser, browser.current_url)
+    basket_page.should_be_empty_basket()
+    basket_page.should_be_no_product_in_basket()
